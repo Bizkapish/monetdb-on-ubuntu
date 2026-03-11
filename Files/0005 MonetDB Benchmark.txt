@@ -1,0 +1,139 @@
+COPY OFFSET 2 INTO product
+FROM '/folder1/product.csv'
+USING DELIMITERS ',', E'\n', '"'
+NULL AS '';
+
+CREATE TABLE sales(
+    orderkey      BIGINT      NOT NULL,
+    linenumber    TINYINT     NOT NULL,
+    orderdate     DATE        NOT NULL,
+    deliverydate  DATE        NOT NULL,
+    customerkey   INTEGER     NOT NULL,
+    storekey      INTEGER     NOT NULL,
+    productkey    SMALLINT    NOT NULL,
+    quantity      TINYINT     NOT NULL,
+    unitprice     REAL        NOT NULL,  -- DECIMAL(8,4)
+    netprice      REAL        NOT NULL,  -- DECIMAL(10,6)
+    unitcost      REAL        NOT NULL,  -- DECIMAL(8,4)
+    currencycode  VARCHAR(3)  NOT NULL,
+    exchangerate  REAL        NOT NULL   -- DECIMAL(6,5)
+);
+
+CREATE TABLE orders(
+    orderkey     BIGINT        NOT NULL,
+    customerkey  INTEGER       NOT NULL,
+    storekey     INTEGER       NOT NULL,
+    orderdate    DATE          NOT NULL,
+    deliverydate DATE          NOT NULL,
+    currencycode VARCHAR(3)    NOT NULL
+);
+
+CREATE TABLE orderrows(
+    OrderKey    BIGINT       NOT NULL,
+    LineNumber  SMALLINT     NOT NULL,
+    ProductKey  SMALLINT     NOT NULL,
+    Quantity    SMALLINT     NOT NULL,
+    UnitPrice   REAL         NOT NULL,   --DECIMAL(8,4)
+    NetPrice    REAL         NOT NULL,   --DECIMAL(10,6)
+    UnitCost    REAL         NOT NULL    --DECIMAL(8,4)
+);
+
+CREATE TABLE product(
+    productkey      SMALLINT        NOT NULL,
+    productcode     INTEGER         NOT NULL,
+    productaname    VARCHAR(83)     NOT NULL,
+    manufacturer    VARCHAR(20)     NOT NULL,
+    brand           VARCHAR(20)     NOT NULL,
+    color           VARCHAR(11)     NOT NULL,
+    weightunit      VARCHAR(6),
+    weight          REAL,                       --DECIMAL(5,2)
+    cost            REAL            NOT NULL,   --DECIMAL(6,2)
+    price           REAL            NOT NULL,   --DECIMAL(7,3)
+    categorykey     TINYINT         NOT NULL,
+    categoryname    VARCHAR(29)     NOT NULL,
+    subcategorykey  SMALLINT        NOT NULL,
+    subcategoryname VARCHAR(32)     NOT NULL    
+);
+
+CREATE TABLE customer(
+    CustomerKey      INTEGER       NOT NULL,
+    GeoAreaKey       SMALLINT      NOT NULL,
+    StartDT          VARCHAR(10)   NOT NULL,
+    EndDT            VARCHAR(10)   NOT NULL,
+    Continent        VARCHAR(13)   NOT NULL,
+    Gender           VARCHAR(6)    NOT NULL,
+    Title            VARCHAR(4)    NOT NULL,
+    GivenName        VARCHAR(15)   NOT NULL,
+    MiddleInitial    VARCHAR(1)    NOT NULL,
+    Surname          VARCHAR(23)   NOT NULL,
+    StreetAddress    VARCHAR(60)   NOT NULL,
+    City             VARCHAR(44)   NOT NULL,
+    State            VARCHAR(28)   NOT NULL,
+    StateFull        VARCHAR(28)   NOT NULL,
+    ZipCode          VARCHAR(8)    NOT NULL,
+    Country          VARCHAR(2)    NOT NULL,
+    CountryFull      VARCHAR(14)   NOT NULL,
+    Birthday         VARCHAR(10)   NOT NULL,
+    Age              TINYINT       NOT NULL,
+    Occupation       VARCHAR(62)   NOT NULL,
+    Company          VARCHAR(35),
+    Vehicle          VARCHAR(43)   NOT NULL,
+    Latitude         DOUBLE        NOT NULL,
+    Longitude        DOUBLE        NOT NULL    
+);
+
+CREATE TABLE date(
+    Date                DATE        NOT NULL,
+    DateKey             BIGINT      NOT NULL,
+    Year2               SMALLINT    NOT NULL,
+    YearQuarter         VARCHAR(7)  NOT NULL,
+    YearQuarterNumber   SMALLINT    NOT NULL,
+    Quarter             VARCHAR(2)  NOT NULL,
+    YearMonth           VARCHAR(14) NOT NULL,
+    YearMonthShort      VARCHAR(8)  NOT NULL,
+    YearMonthNumber     SMALLINT    NOT NULL,
+    Month2              VARCHAR(9)  NOT NULL,
+    MonthShort          VARCHAR(3)  NOT NULL,
+    MonthNumber         TINYINT     NOT NULL,
+    DayofWeek           VARCHAR(9)  NOT NULL,
+    DayofWeekShort      VARCHAR(3)  NOT NULL,
+    DayofWeekNumber     TINYINT     NOT NULL,
+    WorkingDay          BOOLEAN     NOT NULL,
+    WorkingDayNumber    SMALLINT    NOT NULL
+);
+
+CREATE TABLE store(
+    storekey      INTEGER       NOT NULL,
+    storecode     TINYINT       NOT NULL,
+    geoareakey    SMALLINT      NOT NULL,
+    countrycode   VARCHAR(2)    NOT NULL,
+    countryname   VARCHAR(14)   NOT NULL,
+    state         VARCHAR(28)   NOT NULL,
+    opendate      DATE          NOT NULL,
+    closedate     DATE,
+    description   VARCHAR(42)   NOT NULL,
+    squaremeters  SMALLINT,
+    status        VARCHAR(12)
+);
+
+
+CREATE TABLE currencyexchange(
+    date         DATE          NOT NULL,
+    fromcurrency VARCHAR(3)    NOT NULL,
+    tocurrency   VARCHAR(3)    NOT NULL,
+    exchange     REAL          NOT NULL    -- DECIMAL(6,5) 
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
